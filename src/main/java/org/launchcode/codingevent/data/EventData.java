@@ -21,14 +21,14 @@ public class EventData {
 
 
     //remove event from that place
-    public static void removeEvent(Integer id){
+    public static void removeEvent(int id){
         events.remove(id);
     }
 
 
 
     //get a single event using id
-    public static Event getSingleEventById(Integer id)
+    public static Event getSingleEventById(int  id)
     {
         return events.get(id);
     }

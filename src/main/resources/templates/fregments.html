@@ -14,9 +14,11 @@
 <body>
 
 <nav th:fragment="navigation">
+    <h1 th:text="${title}">Coding Events</h1>
     <ul class="nav">
         <li class="nav-item"><a class="nav-link" href="/events">All Events</a></li>
         <li class="nav-item"><a class="nav-link" href="/events/create">Create Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="/events/delete">Delete Events</a></li>
     </ul>
 </nav>
 
