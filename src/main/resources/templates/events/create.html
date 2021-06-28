@@ -3,10 +3,11 @@
 <head th:replace="fregments :: head"></head>
 <body class="container">
 
-<h1>Create Event</h1>
 
 <nav th:replace="fregments :: navigation"></nav>
 
+
+<p th:text="${errorMsg}" style="color:red"></p>
 <form method="post" action="/events/create" >
    <div class="form-group">
       <label>Name
