@@ -28,6 +28,8 @@ public class Event {
         nextId++;
     }
 
+    public Event(){}
+
     public int getId() {
         return id;
     }
