@@ -2,6 +2,7 @@ package org.launchcode.codingevent.controllers;
 
 import org.launchcode.codingevent.data.EventData;
 import org.launchcode.codingevent.models.Event;
+import org.launchcode.codingevent.models.EventType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -29,6 +30,7 @@ public class EventController {
     public String renderEventCreateForm(Model model){
         model.addAttribute("title","Create Event");
         model.addAttribute(new Event());
+        model.addAttribute("types",EventType.values());
         return "events/create";
     }
 
