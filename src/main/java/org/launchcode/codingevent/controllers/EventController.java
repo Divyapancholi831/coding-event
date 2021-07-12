@@ -1,8 +1,10 @@
 package org.launchcode.codingevent.controllers;
 
 import org.launchcode.codingevent.data.EventData;
+import org.launchcode.codingevent.data.EventRepository;
 import org.launchcode.codingevent.models.Event;
 import org.launchcode.codingevent.models.EventType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -18,9 +20,14 @@ public class EventController {
 
    // private static List<Event> events = new ArrayList<>();
 
+    @Autowired
+    private EventRepository eventRepository;
+
+    //find,findbyid,save
+
     @GetMapping
     public String displayAllEvents(Model model){
-        model.addAttribute("events", EventData.getAll());
+        model.addAttribute("events", eventRepository.findAll());
         return "events/index";
     }
 
@@ -41,7 +48,8 @@ public class EventController {
 
             return "events/create";
         }
-            EventData.addEvent(newEvent);
+            eventRepository.save(newEvent);
+            //EventData.addEvent(newEvent);
             return "redirect:";
 
     }
@@ -49,7 +57,7 @@ public class EventController {
     @GetMapping("delete")
     public String displayDeleteEventForm(Model model){
         model.addAttribute("title","Delete Events");
-        model.addAttribute("events",EventData.getAll());
+        model.addAttribute("events",eventRepository.findAll());
         return "events/delete";
     }
 
@@ -57,7 +65,8 @@ public class EventController {
     public String processDeleteEventForm(@RequestParam (required = false) int[] eventIds){
         if(eventIds != null) {
             for (int id : eventIds) {
-                EventData.removeEvent(id);
+                //EventData.removeEvent(id);
+                eventRepository.deleteById(id);
             }
         }
         return "redirect:";
