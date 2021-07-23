@@ -37,7 +37,7 @@ public class EventCategory extends AbstractEntity{
     }
 
 
-    //getter for list of events..no setter bcux field is already set as final
+    //getter for list of events..no setter because field is already set as final
     public List<Event> getEvent() {
         return event;
     }

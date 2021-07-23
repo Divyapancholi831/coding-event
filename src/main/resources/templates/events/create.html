@@ -1,54 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fregments :: head"></head>
 <body class="container">
 
-
 <nav th:replace="fregments :: navigation"></nav>
-
-
-
-<form method="post" action="/events/create" >
-
+<form method="post">
    <div class="form-group">
       <label>Name
-      <input th:field="${event.name}" class="form-control"/>
+         <input th:field="${event.name}" class="form-control">
       </label>
-      <p th:errors="${event.name}" class="error"></p>
+      <p class="error" th:errors="${event.name}"></p>
    </div>
-
    <div class="form-group">
-      <lable>Description
-         <input th:field="${event.description}" class="form-control"/>
-      </lable>
-      <p th:errors="${event.description}" class="error"></p>
+      <label>Description
+         <input th:field="${event.eventDetails.description}" class="form-control">
+      </label>
+      <p class="error" th:errors="${event.eventDetails.description}"></p>
    </div>
-
    <div class="form-group">
-      <lable>Contact Email
-         <input th:field="${event.contactEmail}" class="form-control"/>
-      </lable>
-      <p th:errors="${event.contactEmail}" class="error"></p>
+      <label>Contact Email
+         <input th:field="${event.eventDetails.contactEmail}" class="form-control">
+      </label>
+      <p class="error" th:errors="${event.eventDetails.contactEmail}"></p>
    </div>
-
    <div class="form-group">
       <label>Category
          <select th:field="${event.eventCategory}">
             <option th:each="eventCategory : ${categories}"
-                     th:value="${eventCategory.id}"
-                     th:text="${eventCategory.name}">
-            </option>
+                    th:value="${eventCategory.id}"
+                    th:text="${eventCategory.name}"
+            ></option>
          </select>
-         <p class="error" th:error="event.eventCategory"></p>
+         <p class="error" th:errors="${event.eventCategory}"></p>
       </label>
    </div>
-
-
    <div class="form-group">
-      <input type="submit" value="Create Event" class="btn btn-success">
+      <input type="submit" value="Create" class="btn btn-success">
    </div>
 </form>
-
 
 </body>
 </html>

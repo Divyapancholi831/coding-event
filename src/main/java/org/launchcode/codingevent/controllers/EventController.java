@@ -59,16 +59,15 @@ public class EventController {
     }
 
     @PostMapping("create")
-    public String createEvent(@ModelAttribute @Valid Event newEvent, Errors errors, Model model){
+    public String createEvent(@ModelAttribute @Valid Event newEvent,
+                              Errors errors, Model model) {
         if(errors.hasErrors()) {
-            model.addAttribute("title","Create Event");
-
+            model.addAttribute("title", "Create Event");
             return "events/create";
         }
-            eventRepository.save(newEvent);
-            //EventData.addEvent(newEvent);
-            return "redirect:";
 
+        eventRepository.save(newEvent);
+        return "redirect:";
     }
 
     @GetMapping("delete")
@@ -87,5 +86,20 @@ public class EventController {
             }
         }
         return "redirect:";
+    }
+    @GetMapping("detail")
+    public String displayEventDetails(@RequestParam Integer eventId, Model model) {
+
+        Optional<Event> result = eventRepository.findById(eventId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("title", "Invalid Event ID: " + eventId);
+        } else {
+            Event event = result.get();
+            model.addAttribute("title", event.getName() + " Details");
+            model.addAttribute("event", event);
+        }
+
+        return "events/detail";
     }
 }
